@@ -12,12 +12,21 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, ref } from "vue"
+import { ref,computed } from "vue"
 const props = defineProps(['room_name'])
 const list = ref([0])
 const loading = ref(false)
 const finished = ref(false)
 const hasData = ref(false)
+
+computed(() => {
+    let show=false
+    if(list.value.length>0){
+        show = true
+    }
+    get: () => {}
+    set: (show:boolean) => { hasData.value = show}
+})
 
 function onLoad() {
     // 异步更新数据
